@@ -6,7 +6,7 @@ export interface WizzardState {
   /*
    * Array of step's ids
    */
-  steps: string[]
+  steps: Ref<string[]>
 
   /**
    * currently active step

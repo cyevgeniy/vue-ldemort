@@ -3,18 +3,31 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/vue-ldemort.umd.cjs",
+  "module": "./dist/vue-ldemort.js",
+  "exports": {
+    ".": {
+      "import": "./dist/vue-ldemort.js",
+      "require": "./dist/vue-ldemort.umd.cjs"
+    }
+  },
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc && vite build",
+    "build": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {
     "vue": "^3.3.4"
   },
   "devDependencies": {
+    "@types/node": "^20.5.0",
     "@vitejs/plugin-vue": "^4.2.3",
     "typescript": "^5.0.2",
     "vite": "^4.4.5",
+    "vite-plugin-dts": "^3.5.2",
     "vue-tsc": "^1.8.5"
   }
 }

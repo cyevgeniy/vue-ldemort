@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { provide, ref } from 'vue'
+import { computed, provide, ref } from 'vue'
 import { key } from '../utils/wizzardContext'
 import type { WizzardState } from '../utils/wizzardContext'
 
@@ -16,51 +16,60 @@ const props = withDefaults(defineProps<{
 
 const isOpen = ref(true)
 
+const currentStep = ref()
+let steps = ref<string[]>([])
+
+const len = computed(() => steps.value.length)
+
+function setStep(id: string) {
+  if (currentStep.value)
+    currentStep.value = id
+}
+
+function nextStep() {
+  if (len.value === 0)
+    return
+
+  // If current step is not set, 
+  // switch to the first step
+  if (!currentStep.value) {
+    setStep(steps.value[0])
+    return
+  }
+
+  const idx = steps.value.indexOf(currentStep.value)
+
+  if (idx !== -1)
+    setStep(steps.value[idx < len.value - 1 ? idx + 1 : props.cycled ? 0 : idx])
+    
+}
+
+function prevStep() {
+  if (len.value === 0)
+    return
+
+  // If current step is not set, 
+  // switch to the first step
+  if (!currentStep.value) {
+    setStep(steps.value[0])
+    return
+  }
+
+  const idx = steps.value.indexOf(currentStep.value)
+    
+  if (idx !== -1)
+    setStep(steps.value[idx > 0 ? idx - 1 : props.cycled ? len.value - 1 : idx])
+
+}
+const close = () => isOpen.value = false
+
 const wizzardContext: WizzardState = {
-  currentStep: ref(),
-  setStep(id: string) {
-    if (this.currentStep.value)
-      this.currentStep.value = id
-  },
-  nextStep() {
-    const len = this.steps.length
-    if (len === 0)
-      return
-
-    // If current step is not set, 
-    // switch to the first step
-    if (!this.currentStep.value) {
-      this.setStep(this.steps[0])
-      return
-    }
-
-    const idx = this.steps.indexOf(this.currentStep.value)
-
-
-    if (idx !== -1)
-      this.setStep(this.steps[idx < len - 1 ? idx + 1 : props.cycled ? 0 : idx])
-      
-  },
-  prevStep() {
-    const len = this.steps.length
-    if (len === 0)
-      return
-
-    // If current step is not set, 
-    // switch to the first step
-    if (!this.currentStep.value) {
-      this.setStep(this.steps[0])
-      return
-    }
-
-    const idx = this.steps.indexOf(this.currentStep.value)
-      
-    if (idx !== -1)
-      this.setStep(this.steps[idx > 0 ? idx - 1 : props.cycled ? len - 1 : idx])
-
-  },
-  steps: [],
-  close: () => isOpen.value = false,
+  currentStep,
+  steps,
+  nextStep,
+  prevStep,
+  setStep,
+  close
 }
 
 provide(key, wizzardContext)

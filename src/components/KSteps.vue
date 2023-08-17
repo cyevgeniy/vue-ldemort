@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { inject, useSlots } from 'vue'
+import { Comment, Fragment ,inject, useSlots } from 'vue'
+import type { VNode } from 'vue'
 import { key } from '../utils/wizzardContext'
 
 const context = inject(key)
@@ -9,15 +10,30 @@ if (!context)
 
 const slots = useSlots()
 
-// TODO: handle Fragments and Comments
-function getStepsArray(): string[] {
-  return slots.default?.().map(item => item.props?.id ) ?? []
+function getChilds(children: VNode[]): VNode[] {
+  let res: VNode[] = []
+  for (const node of children) {
+    if (node.type === Comment)
+      continue
+
+    if (node.type === Fragment) {
+      res = [...res, ...getChilds(node.children as VNode[])]
+    } else {
+      res.push(node)
+    }
+  }
+
+  return res
 }
 
-context.steps = getStepsArray()
+function getStepsArray(): string[] {
+  return getChilds(slots.default?.() ?? []).map(item => item.props?.id ) ?? []
+}
+
+context.steps.value = getStepsArray()
 
 // automagically set current page to the first step
-context.currentStep.value = context.steps.length > 0 ? context.steps[0] : undefined
+context.currentStep.value = context.steps.value.length > 0 ? context.steps.value[0] : undefined
 
 </script>
 
