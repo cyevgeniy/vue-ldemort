@@ -76,7 +76,7 @@ provide(key, wizzardContext)
 </script>
 
 <template>
-  <div v-if="isOpen">
+  <div v-if="isOpen" data-test="kwizzard-wrapper">
     <slot :context="wizzardContext" />
   </div>
 </template>
