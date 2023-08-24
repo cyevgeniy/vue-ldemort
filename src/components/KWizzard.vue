@@ -14,8 +14,6 @@ const props = withDefaults(defineProps<{
   cycled: false,
 })
 
-const isOpen = ref(true)
-
 const currentStep = ref()
 let steps = ref<string[]>([])
 
@@ -30,7 +28,7 @@ function nextStep() {
   if (len.value === 0)
     return
 
-  // If current step is not set, 
+  // If current step is not set,
   // switch to the first step
   if (!currentStep.value) {
     setStep(steps.value[0])
@@ -41,14 +39,14 @@ function nextStep() {
 
   if (idx !== -1)
     setStep(steps.value[idx < len.value - 1 ? idx + 1 : props.cycled ? 0 : idx])
-    
+
 }
 
 function prevStep() {
   if (len.value === 0)
     return
 
-  // If current step is not set, 
+  // If current step is not set,
   // switch to the first step
   if (!currentStep.value) {
     setStep(steps.value[0])
@@ -56,12 +54,11 @@ function prevStep() {
   }
 
   const idx = steps.value.indexOf(currentStep.value)
-    
+
   if (idx !== -1)
     setStep(steps.value[idx > 0 ? idx - 1 : props.cycled ? len.value - 1 : idx])
 
 }
-const close = () => isOpen.value = false
 
 const wizzardContext: WizzardState = {
   currentStep,
@@ -69,14 +66,13 @@ const wizzardContext: WizzardState = {
   nextStep,
   prevStep,
   setStep,
-  close
 }
 
 provide(key, wizzardContext)
 </script>
 
 <template>
-  <div v-if="isOpen" data-test="kwizzard-wrapper">
+  <div data-test="kwizzard-wrapper">
     <slot :context="wizzardContext" />
   </div>
 </template>

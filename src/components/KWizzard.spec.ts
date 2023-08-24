@@ -28,25 +28,6 @@ describe('KWizzard component', () => {
     expect(wrapper.html()).not.toContain('<h2>Second step</h2>')
   })
 
-  it('hides when `close` method is called', async () => {
-    // https://github.com/vuejs/test-utils/blob/9d3c2a6526f3d8751d29b2f9112ad2a3332bbf52/tests/mountingOptions/slots.spec.ts#L5
-    let assertParams
-    const wrapper = mount(KWizzard, {
-      slots: {
-        default: (params) => {
-          assertParams = params
-        }
-      }
-    })
-
-
-    assertParams.context.close()
-    await nextTick()
-
-
-    expect(wrapper.find('[data-test="kwizzard-wrapper"]').exists()).toBe(false)
-  })
-
   it('sets the step specified in `setStep` method', async () => {
     // https://github.com/vuejs/test-utils/blob/9d3c2a6526f3d8751d29b2f9112ad2a3332bbf52/tests/mountingOptions/slots.spec.ts#L5
     let assertParams
@@ -64,7 +45,7 @@ describe('KWizzard component', () => {
       }
     })
 
-    assertParams.context.setStep('2')
+    assertParams!.context.setStep('2')
     await nextTick()
 
 
@@ -93,7 +74,7 @@ describe('KWizzard component', () => {
     expect(wrapper.html()).toContain('<h2>First step</h2>')
     expect(wrapper.html()).not.toContain('<h2>Second step</h2>')
 
-    assertParams.context.nextStep()
+    assertParams!.context.nextStep()
     await nextTick()
 
 
@@ -118,11 +99,11 @@ describe('KWizzard component', () => {
       }
     })
 
-    assertParams.context.setStep('2')
+    assertParams!.context.setStep('2')
     await nextTick()
 
     // go back to the first page
-    assertParams.context.prevStep()
+    assertParams!.context.prevStep()
     await nextTick()
 
 
@@ -147,10 +128,10 @@ describe('KWizzard component', () => {
       }
     })
 
-    assertParams.context.setStep('2')
+    assertParams!.context.setStep('2')
     await nextTick()
 
-    assertParams.context.nextStep()
+    assertParams!.context.nextStep()
     await nextTick()
 
 
@@ -175,7 +156,7 @@ describe('KWizzard component', () => {
       }
     })
 
-    assertParams.context.prevStep()
+    assertParams!.context.prevStep()
     await nextTick()
 
 
@@ -203,7 +184,7 @@ describe('KWizzard component', () => {
       }
     })
 
-    assertParams.context.prevStep()
+    assertParams!.context.prevStep()
     await nextTick()
 
 
@@ -231,8 +212,8 @@ describe('KWizzard component', () => {
       }
     })
 
-    assertParams.context.setStep('2')
-    assertParams.context.nextStep()
+    assertParams!.context.setStep('2')
+    assertParams!.context.nextStep()
     await nextTick()
 
     expect(wrapper.html()).toContain('<h2>First step</h2>')

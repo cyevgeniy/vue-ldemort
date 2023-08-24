@@ -27,11 +27,6 @@ export interface WizzardState {
    * Go to prev slide
    */
   prevStep(): void
-
-  /**
-   * Function that closes current wizzard
-   */
-  close(): void
 }
 
 export const key = Symbol() as InjectionKey<WizzardState>
