@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { Comment, Fragment ,inject, useSlots } from 'vue'
 import type { VNode } from 'vue'
-import { key } from '../utils/wizzardContext'
+import { key } from '../utils/wizardContext'
 
 const context = inject(key)
 
 if (!context)
-  throw new Error('Steps component should have parent KWizzard component')
+  throw new Error('Steps component should have parent KWizard component')
 
 const slots = useSlots()
 

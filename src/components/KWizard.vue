@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, provide, ref } from 'vue'
-import { key } from '../utils/wizzardContext'
-import type { WizzardState } from '../utils/wizzardContext'
+import { key } from '../utils/wizardContext'
+import type { WizardState } from '../utils/wizardContext'
 
 const props = withDefaults(defineProps<{
   /**
@@ -15,6 +15,7 @@ const props = withDefaults(defineProps<{
 })
 
 const currentStep = ref()
+
 let steps = ref<string[]>([])
 
 const len = computed(() => steps.value.length)
@@ -60,7 +61,7 @@ function prevStep() {
 
 }
 
-const wizzardContext: WizzardState = {
+const wizardContext: WizardState = {
   currentStep,
   steps,
   nextStep,
@@ -68,11 +69,11 @@ const wizzardContext: WizzardState = {
   setStep,
 }
 
-provide(key, wizzardContext)
+provide(key, wizardContext)
 </script>
 
 <template>
-  <div data-test="kwizzard-wrapper">
-    <slot :context="wizzardContext" />
+  <div data-test="kwizard-wrapper">
+    <slot :context="wizardContext" />
   </div>
 </template>

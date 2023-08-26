@@ -1,8 +1,6 @@
 import type { InjectionKey, Ref } from 'vue'
 
-export type DivElementRef = Ref<HTMLDivElement | undefined>
-
-export interface WizzardState {
+export interface WizardState {
   /*
    * Array of step's ids
    */
@@ -29,4 +27,4 @@ export interface WizzardState {
   prevStep(): void
 }
 
-export const key = Symbol() as InjectionKey<WizzardState>
+export const key = Symbol() as InjectionKey<WizardState>

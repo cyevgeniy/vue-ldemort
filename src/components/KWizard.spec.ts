@@ -1,23 +1,23 @@
 import { mount } from '@vue/test-utils'
 import { describe, it, expect } from 'vitest'
 import { h, nextTick } from 'vue'
-import KWizzard from './KWizzard.vue'
+import KWizard from './KWizard.vue'
 import KSteps from './KSteps.vue'
 import KStep from './KStep.vue'
 
-describe('KWizzard component', () => {
+describe('KWizard component', () => {
   it('renders', () => {
-    const wrapper = mount(KWizzard)
+    const wrapper = mount(KWizard)
 
 
-    expect(wrapper.find('[data-test="kwizzard-wrapper"]').exists()).toBe(true)
+    expect(wrapper.find('[data-test="kwizard-wrapper"]').exists()).toBe(true)
   })
 
   it('renders first step by default', () => {
     const step1 = h(KStep, {id: '1'}, () => [h('h2', 'First step')])
     const step2 = h(KStep, {id: '2'}, () => [h('h2', 'Second step')])
 
-    const wrapper = mount(KWizzard, {
+    const wrapper = mount(KWizard, {
       slots: {
         default: h(KSteps, {}, [step1, step2])
       }
@@ -35,7 +35,7 @@ describe('KWizzard component', () => {
     const step1 = h(KStep, {id: '1'}, () => [h('h2', 'First step')])
     const step2 = h(KStep, {id: '2'}, () => [h('h2', 'Second step')])
 
-    const wrapper = mount(KWizzard, {
+    const wrapper = mount(KWizard, {
       slots: {
         default: (params) => {
           assertParams = params
@@ -60,7 +60,7 @@ describe('KWizzard component', () => {
     const step1 = h(KStep, {id: '1'}, () => [h('h2', 'First step')])
     const step2 = h(KStep, {id: '2'}, () => [h('h2', 'Second step')])
 
-    const wrapper = mount(KWizzard, {
+    const wrapper = mount(KWizard, {
       slots: {
         default: (params) => {
           assertParams = params
@@ -89,7 +89,7 @@ describe('KWizzard component', () => {
     const step1 = h(KStep, {id: '1'}, () => [h('h2', 'First step')])
     const step2 = h(KStep, {id: '2'}, () => [h('h2', 'Second step')])
 
-    const wrapper = mount(KWizzard, {
+    const wrapper = mount(KWizard, {
       slots: {
         default: (params) => {
           assertParams = params
@@ -118,7 +118,7 @@ describe('KWizzard component', () => {
     const step1 = h(KStep, {id: '1'}, () => [h('h2', 'First step')])
     const step2 = h(KStep, {id: '2'}, () => [h('h2', 'Second step')])
 
-    const wrapper = mount(KWizzard, {
+    const wrapper = mount(KWizard, {
       slots: {
         default: (params) => {
           assertParams = params
@@ -146,7 +146,7 @@ describe('KWizzard component', () => {
     const step1 = h(KStep, {id: '1'}, () => [h('h2', 'First step')])
     const step2 = h(KStep, {id: '2'}, () => [h('h2', 'Second step')])
 
-    const wrapper = mount(KWizzard, {
+    const wrapper = mount(KWizard, {
       slots: {
         default: (params) => {
           assertParams = params
@@ -171,7 +171,7 @@ describe('KWizzard component', () => {
     const step1 = h(KStep, {id: '1'}, () => [h('h2', 'First step')])
     const step2 = h(KStep, {id: '2'}, () => [h('h2', 'Second step')])
 
-    const wrapper = mount(KWizzard, {
+    const wrapper = mount(KWizard, {
       props: {
         cycled: true,
       },
@@ -199,7 +199,7 @@ describe('KWizzard component', () => {
     const step1 = h(KStep, {id: '1'}, () => [h('h2', 'First step')])
     const step2 = h(KStep, {id: '2'}, () => [h('h2', 'Second step')])
 
-    const wrapper = mount(KWizzard, {
+    const wrapper = mount(KWizard, {
       props: {
         cycled: true,
       },

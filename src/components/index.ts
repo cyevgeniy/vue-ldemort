@@ -1,5 +1,5 @@
-import KWizzard from './KWizzard.vue'
+import KWizard from './KWizard.vue'
 import KSteps from './KSteps.vue'
 import KStep from './KStep.vue'
-import type { WizzardState } from '../utils/wizzardContext'
-export { KWizzard, KSteps, KStep, WizzardState }
+import type { WizardState } from '../utils/wizardContext'
+export { KWizard, KSteps, KStep, WizardState }
