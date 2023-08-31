@@ -25,7 +25,7 @@ function setStep(id: string) {
     currentStep.value = id
 }
 
-function nextStep() {
+function makeStep(type: 'prev' | 'next') {
   if (len.value === 0)
     return
 
@@ -38,27 +38,21 @@ function nextStep() {
 
   const idx = steps.value.indexOf(currentStep.value)
 
-  if (idx !== -1)
-    setStep(steps.value[idx < len.value - 1 ? idx + 1 : props.cycled ? 0 : idx])
+  if (idx !== -1) {
+    if (type === 'next')
+      setStep(steps.value[idx < len.value - 1 ? idx + 1 : props.cycled ? 0 : idx])
+    else
+      setStep(steps.value[idx > 0 ? idx - 1 : props.cycled ? len.value - 1 : idx])
+  }
 
 }
 
+function nextStep() {
+  makeStep('next')
+}
+
 function prevStep() {
-  if (len.value === 0)
-    return
-
-  // If current step is not set,
-  // switch to the first step
-  if (!currentStep.value) {
-    setStep(steps.value[0])
-    return
-  }
-
-  const idx = steps.value.indexOf(currentStep.value)
-
-  if (idx !== -1)
-    setStep(steps.value[idx > 0 ? idx - 1 : props.cycled ? len.value - 1 : idx])
-
+  makeStep('prev')
 }
 
 const wizardContext: WizardState = {
