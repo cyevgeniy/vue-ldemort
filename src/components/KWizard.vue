@@ -16,7 +16,7 @@ const props = withDefaults(defineProps<{
 
 const currentStep = ref()
 
-let steps = ref<string[]>([])
+const steps = ref<string[]>([])
 
 const len = computed(() => steps.value.length)
 
