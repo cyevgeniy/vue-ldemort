@@ -5,6 +5,12 @@ to create wizards in your own way, handling navigation implementation for you.
 It's inspired by the [react-albus](https://github.com/americanexpress/react-albus)
 component library.
 
+## Installation
+
+```
+npm i vue-ldemort
+```
+
 ## Components
 
 - KWizard. The root wrapper.
@@ -42,7 +48,7 @@ import { KWizard, KSteps, KStep, WizardState } from 'vue-ldemort'
 </template>
 ```
 
-`KWizard` exposes a `WizardState` via a scoped slot. This object implements
+`KWizard` exposes a `WizardState` object via a scoped slot. This object implements
 basic navigation functions:
 
 ```
