@@ -1,8 +1,18 @@
 {
   "name": "vue-ldemort",
-  "private": true,
+  "private": false,
   "version": "0.0.1",
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cyevgeniy/vue-ldemort.git"
+  },
+  "keywords": [
+    "wizard",
+    "stepper",
+    "vue",
+    "multistep"
+  ],
   "files": [
     "dist"
   ],
