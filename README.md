@@ -22,6 +22,8 @@ freely style them whatever you like.
 
 ## Basic example
 
+[Live Demo](https://stackblitz.com/edit/vitejs-vite-urfi7u?file=src%2FApp.vue)
+
 ```
 <script setup lang="ts">
 import { KWizard, KSteps, KStep, WizardState } from 'vue-ldemort'
@@ -41,7 +43,7 @@ import { KWizard, KSteps, KStep, WizardState } from 'vue-ldemort'
           Step three
         </KStep>
       </KSteps>
-      <button @click="onPrev(context)"> Prev page </button>
+      <button @click="context.prevStep()"> Prev page </button>
       <button @click="context.nextStep()"> Next page </button>
       <button @click="context.setStep('2')"> Go to the second page </button>
   </KWizard>
